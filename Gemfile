@@ -46,6 +46,6 @@ group :test do
   gem 'capybara', '~> 3.35'
   gem 'database_cleaner-active_record', '~> 2.0'
   gem 'faker', '~> 2.22'
-  gem 'rails-controller-testing'
+  # Removed the duplicate entry
 end
 
