@@ -5,6 +5,14 @@ import "channels"
 
 import 'bootstrap/dist/js/bootstrap.bundle'
 
+// Import jQuery
+import $ from 'jquery'
+
+// Make jQuery globally available
+window.jQuery = $
+window.$ = $
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+

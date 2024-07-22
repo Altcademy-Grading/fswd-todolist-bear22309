@@ -27,6 +27,8 @@ gem 'nio4r', '~> 2.5'
 gem 'ffi', '~> 1.17'
 
 group :development, :test do
+  # SQLite3 for development and testing
+  gem 'sqlite3', '~> 1.4'
   # Debugging
   gem 'byebug', '~> 11.1.3', platforms: %i[mri mingw x64_mingw]
   # Development tools
