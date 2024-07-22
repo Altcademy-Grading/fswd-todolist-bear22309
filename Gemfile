@@ -23,6 +23,8 @@ gem 'mail', '>= 2.8.0.rc1'
 gem 'bootsnap', '>= 1.13', require: false
 # Cross-platform I/O
 gem 'nio4r', '~> 2.5'
+# Updated ffi gem
+gem 'ffi', '~> 1.15'
 
 group :development, :test do
   # Debugging
