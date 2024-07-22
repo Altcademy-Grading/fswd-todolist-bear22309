@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+ksource 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.1.2'
@@ -24,7 +24,7 @@ gem 'bootsnap', '>= 1.13', require: false
 # Cross-platform I/O
 gem 'nio4r', '~> 2.5'
 # Updated ffi gem
-gem 'ffi', '~> 1.15'
+gem 'ffi', '~> 1.16'
 
 group :development, :test do
   # Debugging
@@ -32,26 +32,20 @@ group :development, :test do
   # Development tools
   gem 'awesome_print', '~> 1.9'
   gem 'dotenv-rails', '~> 2.8'
-  gem 'factory_bot_rails', '~> 6.2'
-  gem 'pry-rails', '>= 0.3.9'
-  gem 'rspec-rails', '~> 5.1'
-  gem 'rubocop', '~> 1.36'
-  gem 'rubocop-rspec', '2.12'
+  gem 'factory_bot_rails', '~> 6.1'
+  gem 'rails-controller-testing', '~> 1.0'
+  gem 'rspec-rails', '~> 5.0'
 end
 
 group :development do
-  # Console tools
-  gem 'listen', '~> 3.7.1'
-  gem 'web-console', '>= 4.2'
-  # Speed up development
-  gem 'spring', '>= 2.1'
-  gem 'spring-watcher-listen', '~> 2.0.1'
-  # SQLite for development
-  gem 'sqlite3', '~> 1.4'
+  gem 'listen', '~> 3.3'
+  gem 'web-console', '>= 4.0.4'
 end
 
-group :production do
-  # PostgreSQL for production
-  gem 'pg', '~> 1.4.3'
+group :test do
+  gem 'capybara', '~> 3.35'
+  gem 'database_cleaner-active_record', '~> 2.0'
+  gem 'faker', '~> 2.22'
+  gem 'rails-controller-testing'
 end
 
