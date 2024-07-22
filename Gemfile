@@ -23,8 +23,6 @@ gem 'mail', '>= 2.8.0.rc1'
 gem 'bootsnap', '>= 1.13', require: false
 # Cross-platform I/O
 gem 'nio4r', '~> 2.5'
-# Bundler version
-gem 'bundler', '~> 2.5'
 
 group :development, :test do
   # Debugging
