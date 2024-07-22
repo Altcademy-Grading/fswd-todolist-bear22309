@@ -300,7 +300,7 @@ DEPENDENCIES
   dotenv-rails (~> 2.8)
   factory_bot_rails (~> 6.1)
   faker (~> 2.22)
-  ffi (~> 1.16)
+  ffi (~> 1.17)
   jbuilder (~> 2.11)
   listen (~> 3.3)
   mail (~> 2.8.1)
