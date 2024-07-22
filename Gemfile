@@ -20,7 +20,7 @@ gem 'webpacker', '~> 5.0'
 # gem 'jquery-rails', '~> 4.4'
 # Use CoffeeScript for .coffee assets and views
 # gem 'coffee-rails', '~> 5.0'
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
+# Turbolinks makes navigating your web application faster. Read more: https://gith$
 # gem 'turbolinks', '~> 5.2.1'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.11'
@@ -37,7 +37,6 @@ gem 'aws-sdk-s3', '~> 1.114'
 gem 'webrick', '~> 1.7'
 # Mail gem
 gem 'mail', '>= 2.8.0.rc1'
-
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
@@ -46,6 +45,9 @@ gem 'mail', '>= 2.8.0.rc1'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.13', require: false
+
+# Include nio4r for cross-platform, high-performance I/O
+gem 'nio4r', '~> 2.5'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -62,11 +64,11 @@ group :development, :test do
 end
 
 group :development do
-  # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
+  # Access an interactive console on exception pages or by calling 'console' anywh$
   gem 'listen', '~> 3.7.1'
   gem 'web-console', '>= 4.2'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring', '< 3.0'
+  # Spring speeds up development by keeping your application running in the backgr$
+  gem 'spring', '>= 2.1'
   gem 'spring-watcher-listen', '~> 2.0.1'
 
   # Use sqlite3 as the database for Active Record
@@ -77,3 +79,4 @@ group :production do
   # Use pg as the database for Active Record
   gem 'pg', '~> 1.4.3'
 end
+
