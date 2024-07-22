@@ -18,7 +18,7 @@ gem 'aws-sdk-s3', '~> 1.114'
 # Webrick
 gem 'webrick', '~> 1.7'
 # Mail gem
-gem 'mail', '>= 2.8.0.rc1'
+gem 'mail', '~> 2.8.1'
 # Bootsnap for faster boot times
 gem 'bootsnap', '>= 1.13', require: false
 # Cross-platform I/O
@@ -46,6 +46,5 @@ group :test do
   gem 'capybara', '~> 3.35'
   gem 'database_cleaner-active_record', '~> 2.0'
   gem 'faker', '~> 2.22'
-  # Removed the duplicate entry
 end
 
