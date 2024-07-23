@@ -49,4 +49,9 @@ group :test do
   gem 'database_cleaner-active_record', '~> 2.0'
   gem 'faker', '~> 2.22'
 end
+
+# PostgreSQL for production
 gem 'pg', '~> 1.2'
+# Ensure compatibility with ffi gem
+gem 'rubygems-update', '~> 3.3.22'
+
