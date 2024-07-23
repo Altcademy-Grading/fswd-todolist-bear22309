@@ -25,8 +25,6 @@ gem 'bootsnap', '>= 1.13', require: false
 gem 'nio4r', '~> 2.5'
 # Updated ffi gem
 gem 'ffi', '~> 1.17'
-# Bundler version
-gem 'bundler', '~> 2.5.6'
 
 group :development, :test do
   # SQLite3 for development and testing
