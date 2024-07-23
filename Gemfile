@@ -24,7 +24,7 @@ gem 'bootsnap', '>= 1.13', require: false
 # Cross-platform I/O
 gem 'nio4r', '~> 2.5'
 # Updated ffi gem
-gem 'ffi', '~> 1.17'
+gem 'ffi', '~> 1.16'
 
 group :development, :test do
   # SQLite3 for development and testing
