@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   end
 
   def public_pages?
-    # Adjust this method based on which actions or controllers you want to bypass authentication
+    # List the actions or controllers that should bypass authentication
     ['static_pages#index'].include?("#{controller_name}##{action_name}")
   end
 end

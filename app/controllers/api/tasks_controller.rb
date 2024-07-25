@@ -3,68 +3,61 @@ module Api
     before_action :authenticate_user
 
     def index
-      user = User.find_by(id: params[:api_key])
-      if user
-        @tasks = user.tasks
-        render 'index', status: :ok
+      if @current_user
+        @tasks = @current_user.tasks
+        render json: @tasks, status: :ok
       else
         render json: { error: 'User not found' }, status: :not_found
       end
     end
 
     def show
-      user = User.find_by(id: params[:api_key])
-      @task = user.tasks.find_by(id: params[:id])
+      @task = @current_user.tasks.find_by(id: params[:id])
       if @task
-        render 'show', status: :ok
+        render json: @task, status: :ok
       else
         render json: { error: 'Task not found' }, status: :not_found
       end
     end
 
     def create
-      user = User.find_by(id: params[:api_key])
-      @task = user.tasks.new(task_params)
+      @task = @current_user.tasks.new(task_params)
       if @task.save
-        render 'show', status: :created
+        render json: @task, status: :created
       else
         render json: { errors: @task.errors.full_messages }, status: :unprocessable_entity
       end
     end
 
     def update
-      user = User.find_by(id: params[:api_key])
-      @task = user.tasks.find_by(id: params[:id])
+      @task = @current_user.tasks.find_by(id: params[:id])
       if @task.update(task_params)
-        render 'show', status: :ok
+        render json: @task, status: :ok
       else
         render json: { errors: @task.errors.full_messages }, status: :unprocessable_entity
       end
     end
 
     def mark_complete
-      user = User.find_by(id: params[:api_key])
-      @task = user.tasks.find_by(id: params[:id])
+      @task = @current_user.tasks.find_by(id: params[:id])
       if @task.update(completed: true)
-        render 'show', status: :ok
+        render json: @task, status: :ok
       else
         render json: { errors: @task.errors.full_messages }, status: :unprocessable_entity
       end
     end
 
     def mark_active
-      user = User.find_by(id: params[:api_key])
-      @task = user.tasks.find_by(id: params[:id])
+      @task = @current_user.tasks.find_by(id: params[:id])
       if @task.update(completed: false)
-        render 'show', status: :ok
+        render json: @task, status: :ok
       else
         render json: { errors: @task.errors.full_messages }, status: :unprocessable_entity
       end
     end
 
     def destroy
-      user = User.find_by(id: params[:api_key])
-      @task = user.tasks.find_by(id: params[:id])
+      @task = @current_user.tasks.find_by(id: params[:id])
       if @task.destroy
         head :no_content
       else
