@@ -5,8 +5,16 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user
     token = request.headers['Authorization']
+
+    # Ensure the token is present
+    unless token
+      render json: { error: 'Token missing' }, status: :unauthorized
+      return
+    end
+
     @current_user = User.find_by(authentication_token: token)
 
+    # Check if the user was found
     unless @current_user
       render json: { error: 'Not Authorized' }, status: :unauthorized
     end

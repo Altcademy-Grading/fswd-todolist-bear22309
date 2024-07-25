@@ -5,86 +5,85 @@ class TasksController < ApplicationController
     user = User.find_by(id: params[:api_key])
     @task = user.tasks.find_by(id: params[:id])
 
-    return render 'not_found', status: :not_found unless @task
+    unless @task
+      return render json: { error: 'Task not found' }, status: :not_found
+    end
 
-    render 'show', status: :ok
+    render json: @task, status: :ok
   end
 
   def index
     user = User.find_by(id: params[:api_key])
     @tasks = user.tasks.all
-    render 'index', status: :ok
+    render json: @tasks, status: :ok
   end
 
   def create
     user = User.find_by(id: params[:api_key])
     @task = user.tasks.new(task_params)
 
-    return render 'bad_request', status: :bad_request unless @task.save
-
-    render 'show', status: :ok
+    if @task.save
+      render json: @task, status: :created
+    else
+      render json: { errors: @task.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   def destroy
     user = User.find_by(id: params[:api_key])
     @task = user.tasks.find_by(id: params[:id])
 
-    return render 'not_found', status: :not_found unless @task
-    return render 'bad_request', status: :bad_request unless @task.destroy
-
-    render json: { success: true }, status: :ok
+    if @task&.destroy
+      render json: { success: true }, status: :ok
+    else
+      render json: { error: 'Task could not be deleted' }, status: :unprocessable_entity
+    end
   end
 
   def update
     user = User.find_by(id: params[:api_key])
     @task = user.tasks.find_by(id: params[:id])
 
-    return render 'not_found', status: :not_found unless @task
-    return render 'bad_request', status: :bad_request unless @task.update(task_params)
-
-    render 'show', status: :ok
+    if @task.update(task_params)
+      render json: @task, status: :ok
+    else
+      render json: { errors: @task.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   def mark_complete
     user = User.find_by(id: params[:api_key])
     @task = user.tasks.find_by(id: params[:id])
 
-    return render 'not_found', status: :not_found unless @task
-    return render 'bad_request', status: :bad_request unless @task.update(completed: true)
-
-    render 'show', status: :ok
+    if @task.update(completed: true)
+      render json: @task, status: :ok
+    else
+      render json: { errors: @task.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   def mark_active
     user = User.find_by(id: params[:api_key])
     @task = user.tasks.find_by(id: params[:id])
 
-    return render 'not_found', status: :not_found unless @task
-    return render 'bad_request', status: :bad_request unless @task.update(completed: false)
-
-    render 'show', status: :ok
+    if @task.update(completed: false)
+      render json: @task, status: :ok
+    else
+      render json: { errors: @task.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   private
 
   def task_params
-    params.require(:task).permit(:content, :due)
+    params.require(:task).permit(:title, :description, :completed)  # Adjust these parameters to match your Task model
   end
 
   def validate_user
     user = User.find_by(id: params[:api_key])
     unless user
-      return render json: {
-        status: '401',
-        title: 'Unauthorized User',
-        detail: 'User is not found.'
-      }, status: :unauthorized
-    end
-
-    if user
-      true
-    else
-      false
+      render json: { status: '401', title: 'Unauthorized User', detail: 'User is not found.' }, status: :unauthorized
     end
   end
 end
+
