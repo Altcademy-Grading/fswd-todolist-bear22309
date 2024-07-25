@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     token = request.headers['Authorization']
 
     # Ensure the token is present
-    unless token
+    if token.blank?
       render json: { error: 'Token missing' }, status: :unauthorized
       return
     end
