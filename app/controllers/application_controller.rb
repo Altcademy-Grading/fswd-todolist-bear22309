@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user
+  before_action :authenticate_user, unless: :public_pages?
 
   private
 
@@ -18,6 +18,11 @@ class ApplicationController < ActionController::Base
     unless @current_user
       render json: { error: 'Not Authorized' }, status: :unauthorized
     end
+  end
+
+  def public_pages?
+    # Adjust this method based on which actions or controllers you want to bypass authentication
+    ['static_pages#index'].include?("#{controller_name}##{action_name}")
   end
 end
 
