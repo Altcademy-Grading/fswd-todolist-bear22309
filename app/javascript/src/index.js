@@ -2,6 +2,8 @@ import $ from 'jquery';
 import { indexTasks, postTask } from './requests.js';
 
 $(document).ready(function() {
+  const apiKey = '6bf7fe67c3c6be17548afc461de6297f'; // Use actual user API key
+
   // Function to fetch and display tasks
   function fetchTasks() {
     indexTasks(
@@ -47,7 +49,7 @@ $(document).ready(function() {
     var taskId = $(this).data('id');
     $.ajax({
       type: 'PUT',
-      url: 'api/tasks/' + taskId + '/mark_complete?api_key=1', // Replace '1' with the actual API key or user ID
+      url: 'api/tasks/' + taskId + '/mark_complete?api_key=' + apiKey, 
       success: function(response) {
         fetchTasks(); // Reload tasks
       },
@@ -61,7 +63,7 @@ $(document).ready(function() {
     var taskId = $(this).data('id');
     $.ajax({
       type: 'DELETE',
-      url: 'api/tasks/' + taskId + '?api_key=1', // Replace '1' with the actual API key or user ID
+      url: 'api/tasks/' + taskId + '?api_key=' + apiKey, 
       success: function(response) {
         fetchTasks(); // Reload tasks
       },

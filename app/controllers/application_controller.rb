@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   def authenticate_user
     token = request.headers['Authorization']
 
-    # Ensure the token is present
+    # If not using Bearer tokens, you may need to handle tokens differently
     if token.blank?
       render json: { error: 'Token missing' }, status: :unauthorized
       return
@@ -14,7 +14,6 @@ class ApplicationController < ActionController::Base
 
     @current_user = User.find_by(authentication_token: token)
 
-    # Check if the user was found
     unless @current_user
       render json: { error: 'Not Authorized' }, status: :unauthorized
     end

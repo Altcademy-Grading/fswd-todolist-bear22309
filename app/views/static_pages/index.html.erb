@@ -7,7 +7,7 @@
 
       <!-- Add your task input and list elements here -->
       <div class="task-input mb-3">
-        <input type="text" id="taskContent" class="form-control" placeholder="Add a new task...">
+        <input type="text" id="taskContent" class="form-control" placeholder="Add a new task">
         <button id="addTaskButton" class="btn btn-primary mt-2">Add Task</button>
       </div>
 
@@ -17,15 +17,16 @@
     </div>
   </div>
 </div>
-
 <script>
   // jQuery document ready function
   $(document).ready(function() {
+    const apiKey = '6bf7fe67c3c6be17548afc461de6297f'; // Use actual user API key
+
     // Function to fetch and display tasks
     function fetchTasks() {
       $.ajax({
         type: 'GET',
-        url: 'api/tasks?api_key=1', // Replace '1' with the actual API key or user ID
+        url: 'api/tasks?api_key=' + apiKey, 
         success: function(response) {
           var taskList = $('#taskList');
           taskList.empty(); // Clear existing tasks
@@ -52,7 +53,7 @@
       if (content) {
         $.ajax({
           type: 'POST',
-          url: 'api/tasks?api_key=1', // Replace '1' with the actual API key or user ID
+          url: 'api/tasks?api_key=' + apiKey, 
           data: {
             task: {
               content: content
@@ -74,7 +75,7 @@
       var taskId = $(this).data('id');
       $.ajax({
         type: 'PUT',
-        url: 'api/tasks/' + taskId + '/mark_complete?api_key=1', // Replace '1' with the actual API key or user ID
+        url: 'api/tasks/' + taskId + '/mark_complete?api_key=' + apiKey, 
         success: function(response) {
           fetchTasks(); // Reload tasks
         },
@@ -88,7 +89,7 @@
       var taskId = $(this).data('id');
       $.ajax({
         type: 'DELETE',
-        url: 'api/tasks/' + taskId + '?api_key=1', // Replace '1' with the actual API key or user ID
+        url: 'api/tasks/' + taskId + '?api_key=' + apiKey, 
         success: function(response) {
           fetchTasks(); // Reload tasks
         },
