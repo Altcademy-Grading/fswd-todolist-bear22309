@@ -1,13 +1,16 @@
 import $ from 'jquery'; // Ensure jQuery is imported if used
 import 'bootstrap'; // Ensure Bootstrap is imported if used
 window.$ = $;
+
 document.addEventListener("DOMContentLoaded", () => {
+  const apiKey = document.querySelector('meta[name="api-key"]').getAttribute('content');
 
   const fetchTasks = async () => {
     try {
       const response = await fetch('http://localhost:3000/api/tasks', {
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Basic ${apiKey}` // Use Basic Authentication if required
         },
       });
 
@@ -28,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Basic ${apiKey}` // Use Basic Authentication if required
         },
         body: JSON.stringify({
           task: {
@@ -80,6 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Basic ${apiKey}` // Use Basic Authentication if required
         },
       });
       fetchTasks();
@@ -94,6 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Basic ${apiKey}` // Use Basic Authentication if required
         },
       });
       fetchTasks();
@@ -114,4 +120,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
   fetchTasks();
 });
-
