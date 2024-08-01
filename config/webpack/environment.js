@@ -40,4 +40,3 @@ environment.loaders.append('vue', {
 environment.plugins.prepend('VueLoaderPlugin', new VueLoaderPlugin())
 
 module.exports = environment
-
