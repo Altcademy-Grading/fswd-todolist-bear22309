@@ -32,5 +32,12 @@ environment.plugins.prepend('Provide',
   })
 )
 
+// Add Vue support
+environment.loaders.append('vue', {
+  test: /\.vue$/,
+  loader: 'vue-loader'
+})
+environment.plugins.prepend('VueLoaderPlugin', new VueLoaderPlugin())
+
 module.exports = environment
 
