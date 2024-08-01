@@ -1,3 +1,4 @@
+// app/javascript/packs/application.js
 import 'bootstrap';
 import '../stylesheets/application';
 import { Turbo } from "@hotwired/turbo-rails";

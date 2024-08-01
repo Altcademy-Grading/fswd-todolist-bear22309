@@ -37,5 +37,5 @@
   },
   "scripts": {
     "build": "NODE_OPTIONS=--openssl-legacy-provider webpack"
-  }
+  }  
 }

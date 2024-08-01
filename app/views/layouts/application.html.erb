@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>YourAppName</title>
-  <meta name="api-key" content="<%= ENV['API_KEY'] %>">
+  <meta name="api-key" content="<%= current_user.authentication_token %>">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <%= stylesheet_link_tag 'application', media: 'all' %>

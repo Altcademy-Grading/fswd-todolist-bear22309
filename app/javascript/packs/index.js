@@ -7,10 +7,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const fetchTasks = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/tasks', {
+      const response = await fetch('/api/tasks', {
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Basic ${apiKey}` // Use Basic Authentication if required
+          'Authorization': apiKey
         },
       });
 
@@ -27,11 +27,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const createTask = async (title, description) => {
     try {
-      const response = await fetch('http://localhost:3000/api/tasks', {
+      const response = await fetch('/api/tasks', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Basic ${apiKey}` // Use Basic Authentication if required
+          'Authorization': apiKey
         },
         body: JSON.stringify({
           task: {
@@ -80,11 +80,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const markTaskComplete = async (taskId) => {
     try {
-      await fetch(`http://localhost:3000/api/tasks/${taskId}/mark_complete`, {
+      await fetch(`/api/tasks/${taskId}/mark_complete`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Basic ${apiKey}` // Use Basic Authentication if required
+          'Authorization': apiKey
         },
       });
       fetchTasks();
@@ -95,11 +95,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const deleteTask = async (taskId) => {
     try {
-      await fetch(`http://localhost:3000/api/tasks/${taskId}`, {
+      await fetch(`/api/tasks/${taskId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Basic ${apiKey}` // Use Basic Authentication if required
+          'Authorization': apiKey
         },
       });
       fetchTasks();
