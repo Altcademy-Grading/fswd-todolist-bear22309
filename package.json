@@ -24,7 +24,7 @@
     "jquery": "^3.7.1",
     "sass": "^1.77.8",
     "turbolinks": "^5.2.0",
-    "vue": "^3.4.34",
+    "vue": "^3.4.35",
     "vue-template-compiler": "^2.7.16",
     "webpack-merge": "^5.8.0"
   },
