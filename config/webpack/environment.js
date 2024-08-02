@@ -33,7 +33,7 @@ environment.plugins.prepend('Provide',
 )
 
 // Add Vue support
-environment.loaders.append('vue', {
+environment.loaders.prepend('vue', {
   test: /\.vue$/,
   loader: 'vue-loader'
 })
