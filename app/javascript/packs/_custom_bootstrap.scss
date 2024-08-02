@@ -1,0 +1,18 @@
+// Override mixed declarations warning
+.parent {
+  font-weight: bold; // move declaration above nested rule
+  .child {
+    // nested rule
+  }
+}
+
+// Override abs() function
+$dividend: math.abs(100%);
+// or
+$dividend: abs(#{100%});
+
+// Override opaque function
+@function opaque($foreground, $background) {
+  @return mix(rgba($foreground, 1), $background, opacity($foreground) * 100 * 1%);
+}
+
