@@ -1,5 +1,5 @@
 const path = require('path');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = {
   entry: {
@@ -20,21 +20,20 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env'],
-            plugins: ['@babel/plugin-proposal-class-properties', '@babel/plugin-proposal-private-methods']
-          }
-        }
+            plugins: [
+              '@babel/plugin-proposal-class-properties',
+              '@babel/plugin-proposal-private-methods',
+            ],
+          },
+        },
       },
       {
         test: /\.vue$/,
-        loader: 'vue-loader'
+        loader: 'vue-loader',
       },
       {
         test: /\.scss$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader'
-        ]
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
         test: /\.(png|jpe?g|gif|svg)$/,
@@ -42,24 +41,22 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              name: '[path][name].[ext]'
-            }
-          }
-        ]
+              name: '[path][name].[ext]',
+            },
+          },
+        ],
       },
     ],
   },
   resolve: {
     extensions: ['.js', '.vue', '.scss'],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js'
-    }
+      vue$: 'vue/dist/vue.esm.js', // Ensure this points to Vue 3
+    },
   },
-  plugins: [
-    new VueLoaderPlugin()
-  ],
+  plugins: [new VueLoaderPlugin()],
   devServer: {
-    contentBase: path.resolve(__dirname, 'public'),
+    static: path.resolve(__dirname, 'public'),
     compress: true,
     port: 3035,
   },
