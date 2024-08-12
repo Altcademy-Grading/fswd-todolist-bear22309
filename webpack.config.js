@@ -1,4 +1,5 @@
 const path = require('path');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
   entry: {
@@ -15,21 +16,48 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: 'babel-loader',
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+            plugins: ['@babel/plugin-proposal-class-properties', '@babel/plugin-proposal-private-methods']
+          }
+        }
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader'
       },
       {
         test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader'
+        ]
       },
       {
         test: /\.(png|jpe?g|gif|svg)$/,
-        use: ['file-loader'],
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[path][name].[ext]'
+            }
+          }
+        ]
       },
     ],
   },
   resolve: {
-    extensions: ['.js', '.scss'],
+    extensions: ['.js', '.vue', '.scss'],
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js'
+    }
   },
+  plugins: [
+    new VueLoaderPlugin()
+  ],
   devServer: {
     contentBase: path.resolve(__dirname, 'public'),
     compress: true,
