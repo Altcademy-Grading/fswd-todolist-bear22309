@@ -45,6 +45,6 @@
     "webpack-dev-server": "^3.11.2"
   },
   "scripts": {
-    "build": "NODE_OPTIONS=--openssl-legacy-provider webpack"
-  }
+    "build": "NODE_OPTIONS=--experimental-vm-modules webpack"
+  }  
 }
