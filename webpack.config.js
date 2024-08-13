@@ -7,7 +7,7 @@ module.exports = {
     index: './app/javascript/packs/index.js',
   },
   output: {
-    filename: '[name]-[hash].js',
+    filename: '[name]-[fullhash].js', // Use [fullhash] for cache-busting
     path: path.resolve(__dirname, 'public/packs'),
     publicPath: '/packs/',
   },
@@ -19,10 +19,36 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env'],
+            presets: [
+              [
+                '@babel/preset-env',
+                {
+                  loose: true,
+                  useBuiltIns: 'usage',
+                  corejs: 3,
+                }
+              ],
+              '@babel/preset-react'
+            ],
             plugins: [
-              '@babel/plugin-proposal-class-properties',
-              '@babel/plugin-proposal-private-methods',
+              [
+                '@babel/plugin-proposal-class-properties',
+                {
+                  loose: true
+                }
+              ],
+              [
+                '@babel/plugin-proposal-private-methods',
+                {
+                  loose: true
+                }
+              ],
+              [
+                '@babel/plugin-proposal-private-property-in-object',
+                {
+                  loose: true
+                }
+              ]
             ],
           },
         },
