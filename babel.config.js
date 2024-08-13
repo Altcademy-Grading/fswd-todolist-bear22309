@@ -1,44 +1,26 @@
 module.exports = function(api) {
+  api.cache(true);
+
   const isDevelopmentEnv = api.env('development');
   const isProductionEnv = api.env('production');
-  const isTestEnv = api.env('test');
 
   return {
     presets: [
-      isTestEnv && [
+      [
         '@babel/preset-env',
         {
-          targets: {
-            node: 'current'
-          }
+          loose: true,  // Ensure 'loose' mode is set globally if needed
+          useBuiltIns: 'usage',
+          corejs: 3,
         }
       ],
-      (isProductionEnv || isDevelopmentEnv) && [
-        '@babel/preset-env',
-        {
-          forceAllTransforms: true,
-          useBuiltIns: 'entry',
-          corejs: 3,
-          modules: false,
-          exclude: ['transform-typeof-symbol']
-        }
-      ]
-    ].filter(Boolean),
+      '@babel/preset-react'
+    ],
     plugins: [
-      'babel-plugin-macros',
-      '@babel/plugin-syntax-dynamic-import',
-      isTestEnv && 'babel-plugin-dynamic-import-node',
-      '@babel/plugin-transform-destructuring',
       [
         '@babel/plugin-proposal-class-properties',
         {
           loose: true
-        }
-      ],
-      [
-        '@babel/plugin-proposal-object-rest-spread',
-        {
-          useBuiltIns: true
         }
       ],
       [
@@ -52,20 +34,7 @@ module.exports = function(api) {
         {
           loose: true
         }
-      ],
-      [
-        '@babel/plugin-transform-runtime',
-        {
-          helpers: false
-        }
-      ],
-      [
-        '@babel/plugin-transform-regenerator',
-        {
-          async: false
-        }
-      ],
-      '@babel/plugin-proposal-optional-chaining'
-    ].filter(Boolean)
-  }
-}
+      ]
+    ]
+  };
+};
