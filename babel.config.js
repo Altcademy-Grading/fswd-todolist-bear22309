@@ -10,8 +10,7 @@ module.exports = function(api) {
           useBuiltIns: 'usage',
           corejs: 3,
         }
-      ],
-      '@babel/preset-react'
+      ]
     ],
     plugins: [
       [

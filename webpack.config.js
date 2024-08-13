@@ -2,6 +2,7 @@ const path = require('path');
 const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = {
+  mode: 'development', // Set the mode explicitly to 'development' or 'production'
   entry: {
     application: './app/javascript/packs/application.js',
     index: './app/javascript/packs/index.js',
@@ -27,8 +28,7 @@ module.exports = {
                   useBuiltIns: 'usage',
                   corejs: 3,
                 }
-              ],
-              '@babel/preset-react'
+              ]
             ],
             plugins: [
               [
