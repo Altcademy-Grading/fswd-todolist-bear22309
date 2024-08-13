@@ -1,15 +1,12 @@
 module.exports = function(api) {
   api.cache(true);
 
-  const isDevelopmentEnv = api.env('development');
-  const isProductionEnv = api.env('production');
-
   return {
     presets: [
       [
         '@babel/preset-env',
         {
-          loose: true,  // Ensure 'loose' mode is set globally if needed
+          loose: true,
           useBuiltIns: 'usage',
           corejs: 3,
         }
