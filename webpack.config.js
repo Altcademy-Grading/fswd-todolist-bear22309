@@ -77,7 +77,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.vue', '.scss'],
     alias: {
-      vue$: 'vue/dist/vue.esm.js', // Ensure this points to Vue 3
+      vue$: 'vue/dist/vue.runtime.esm.js', 
     },
   },
   plugins: [new VueLoaderPlugin()],
