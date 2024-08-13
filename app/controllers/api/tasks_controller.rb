@@ -1,12 +1,11 @@
 module Api
   class TasksController < ApplicationController
-    before_action :authenticate_user
-
     def index
       user = User.find_by(id: params[:api_key])
+      puts params
       if user
         @tasks = user.tasks
-        render 'index', status: :ok
+        render 'index.jbuilder', status: :ok
       else
         render json: { error: 'User not found' }, status: :not_found
       end
@@ -25,7 +24,7 @@ module Api
     def create
       user = User.find_by(id: params[:api_key])
       @task = user.tasks.new(task_params)
-      if @task.save
+      if @task.save!
         render 'show', status: :created
       else
         render json: { errors: @task.errors.full_messages }, status: :unprocessable_entity
@@ -75,8 +74,7 @@ module Api
     private
 
     def task_params
-      params.require(:task).permit(:title, :description, :completed)
+      params.require(:task).permit(:content, :completed)
     end
   end
 end
-

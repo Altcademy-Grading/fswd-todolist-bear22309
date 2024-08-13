@@ -76,7 +76,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title, :description, :completed)  # Adjust these parameters to match your Task model
+    params.require(:task).permit(:content, :completed)  # Adjust these parameters to match your Task model
   end
 
   def validate_user
@@ -86,4 +86,3 @@ class TasksController < ApplicationController
     end
   end
 end
-

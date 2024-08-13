@@ -14,4 +14,3 @@ Rails.application.routes.draw do
   # Catch-all route for unknown paths, redirect to root
   get '*path', to: redirect('/')
 end
-
