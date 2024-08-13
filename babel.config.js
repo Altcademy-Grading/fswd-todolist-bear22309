@@ -68,7 +68,9 @@ module.exports = function(api) {
       [
         '@babel/plugin-transform-runtime',
         {
-          helpers: false
+          helpers: false,
+          regenerator: true,
+          corejs: false
         }
       ],
       [
@@ -77,7 +79,7 @@ module.exports = function(api) {
           async: false
         }
       ],
-      '@babel/plugin-proposal-optional-chaining' // Add optional chaining plugin
+      '@babel/plugin-proposal-optional-chaining' // Optional chaining
     ].filter(Boolean)
   }
 }
